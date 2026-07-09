@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(git --version)",
+      "Bash(docker --version)",
+      "Bash(mkdir -p backend/app/core backend/app/db backend/app/api/routes backend/app/agents backend/app/schemas backend/app/services backend/app/ml backend/tests backend/alembic/versions)",
+      "Bash(touch backend/alembic/versions/.gitkeep)",
+      "Bash(python -m venv .venv)",
+      "Bash(./.venv/Scripts/python.exe -m pip install --quiet --disable-pip-version-check fastapi uvicorn pydantic pydantic-settings sqlalchemy psycopg2-binary httpx pytest pytest-asyncio)",
+      "Bash(./.venv/Scripts/python.exe -m pytest tests/ -v)"
+    ]
+  }
+}

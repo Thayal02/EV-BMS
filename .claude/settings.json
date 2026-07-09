@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./.venv/Scripts/python.exe -c ' *)",
+      "Bash(./.venv/Scripts/python.exe -m pip install --quiet --disable-pip-version-check fastapi uvicorn pydantic pydantic-settings sqlalchemy psycopg2-binary httpx pytest joblib pandas numpy scikit-learn)",
+      "Bash(./.venv/Scripts/python.exe -m pip install --quiet --disable-pip-version-check ruff)",
+      "Bash(DATABASE_URL=postgresql+psycopg2://u:p@localhost:5432/db MODEL_REGISTRY_PATH=../ml/models/registry ./.venv/Scripts/python.exe -c ' *)",
+      "Bash(DATABASE_URL=\"postgresql+psycopg2://u:p@localhost:5432/db\" MODEL_REGISTRY_PATH=\"../ml/models/registry\" ./.venv/Scripts/python.exe \"C:\\\\Users\\\\91760\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\t--7th-SEM-PROJECT\\\\304c209f-ef6e-4210-af0f-130c92ae2240\\\\scratchpad\\\\e2e_test.py\")",
+      "Bash(PYTHONPATH=\".\" DATABASE_URL=\"postgresql+psycopg2://u:p@localhost:5432/db\" MODEL_REGISTRY_PATH=\"../ml/models/registry\" ./.venv/Scripts/python.exe \"C:\\\\Users\\\\91760\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\t--7th-SEM-PROJECT\\\\304c209f-ef6e-4210-af0f-130c92ae2240\\\\scratchpad\\\\e2e_test.py\")",
+      "Bash(rm -f \"C:\\\\Users\\\\91760\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\t--7th-SEM-PROJECT\\\\304c209f-ef6e-4210-af0f-130c92ae2240\\\\scratchpad\\\\e2e_test.py\" \"C:\\\\Users\\\\91760\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\t--7th-SEM-PROJECT\\\\304c209f-ef6e-4210-af0f-130c92ae2240\\\\scratchpad\\\\sample_features.txt\")",
+      "Bash(rm -rf .venv .pytest_cache .ruff_cache)"
+    ]
+  }
+}

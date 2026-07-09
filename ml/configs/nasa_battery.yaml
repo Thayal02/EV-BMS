@@ -1,0 +1,48 @@
+# Configuration for the NASA Prognostics Center of Excellence Li-ion Battery
+# Aging dataset (https://phm-datasets.s3.amazonaws.com/NASA/5.+Battery+Data+Set.zip).
+#
+# These are dataset calibration constants (the physical rated capacity of the
+# specific 18650-type research cells NASA tested), not product battery specs -
+# they must not be confused with the open, metadata-driven EV pack schema in
+# shared/schemas/battery_metadata.schema.json, which never hardcodes a pack
+# size or chemistry list.
+
+dataset_name: nasa_battery_aging
+raw_data_root: data/raw/nasa_raw
+
+# End-of-life criterion used consistently across every NASA sub-experiment:
+# a cell is considered failed once capacity fades to this fraction of its
+# rated capacity (30% fade -> 70% of rated capacity remaining).
+eol_capacity_fraction: 0.70
+
+batches:
+  - name: BatteryAgingARC-FY08Q4
+    ambient_temperature_c: 24
+    battery_ids: [B0005, B0006, B0007, B0018]
+    rated_capacity_ah: 2.0
+  - name: BatteryAgingARC_25_26_27_28_P1
+    ambient_temperature_c: 24
+    battery_ids: [B0025, B0026, B0027, B0028]
+    rated_capacity_ah: 2.0
+  - name: BatteryAgingARC_25-44
+    ambient_temperature_c: 24
+    battery_ids:
+      [B0025, B0026, B0027, B0028, B0029, B0030, B0031, B0032, B0033, B0034,
+       B0036, B0038, B0039, B0040, B0041, B0042, B0043, B0044]
+    rated_capacity_ah: 2.0
+  - name: BatteryAgingARC_45_46_47_48
+    ambient_temperature_c: 4
+    battery_ids: [B0045, B0046, B0047, B0048]
+    rated_capacity_ah: 2.0
+  - name: BatteryAgingARC_49_50_51_52
+    ambient_temperature_c: 4
+    battery_ids: [B0049, B0050, B0051, B0052]
+    rated_capacity_ah: 2.0
+  - name: BatteryAgingARC_53_54_55_56
+    ambient_temperature_c: 4
+    battery_ids: [B0053, B0054, B0055, B0056]
+    rated_capacity_ah: 2.0
+
+# Batches 2 and 3 both contain B0025-B0028; batch 3 is the superset capture,
+# so it wins when a battery_id is loaded from multiple batches.
+duplicate_battery_id_resolution: prefer_last_batch

@@ -1,0 +1,37 @@
+# Runtime (serving) dependencies only. Training-only deps live in ml/requirements.txt.
+
+# --- Web framework ---
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+pydantic==2.10.4
+pydantic-settings==2.7.1
+
+# --- Database ---
+SQLAlchemy==2.0.36
+alembic==1.14.0
+psycopg2-binary==2.9.10
+
+# --- Data handling ---
+pandas==3.0.3
+numpy==2.5.1
+pyarrow==24.0.0
+
+# --- ML inference (must match versions used to train/serialize models in ml/) ---
+scikit-learn==1.9.0
+xgboost==3.3.0
+lightgbm==4.6.0
+catboost==1.2.10
+torch==2.5.1
+joblib==1.5.3
+
+# --- Explainable AI ---
+shap==0.46.0
+lime==0.2.0.1
+
+# --- LLM Expert Agent ---
+anthropic==0.40.0
+
+# --- Utilities ---
+python-jose[cryptography]==3.3.0
+httpx==0.28.1

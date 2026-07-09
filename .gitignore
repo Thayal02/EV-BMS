@@ -1,0 +1,66 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+*.egg
+.Python
+.venv/
+venv/
+env/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+
+# ---- Environment / secrets ----
+.env
+.env.*
+!.env.example
+
+# ---- Node / Frontend ----
+node_modules/
+frontend/dist/
+frontend/build/
+.vite/
+*.local
+
+# ---- ML artifacts & data ----
+ml/data/raw/*
+ml/data/processed/*
+ml/data/external/*
+!ml/data/raw/.gitkeep
+!ml/data/processed/.gitkeep
+!ml/data/external/.gitkeep
+ml/models/registry/*
+!ml/models/registry/.gitkeep
+ml/mlruns/
+ml/.optuna/
+ml/reports/
+ml/catboost_info/
+catboost_info/
+*.joblib
+*.pkl
+*.h5
+*.pt
+*.ckpt
+
+# ---- Jupyter ----
+.ipynb_checkpoints/
+
+# ---- Logs ----
+*.log
+logs/
+
+# ---- OS / Editor ----
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# ---- Docker ----
+*.pid

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bms-project.local/schemas/battery_metadata.schema.json",
+  "title": "BatteryMetadata",
+  "description": "Canonical description of an EV battery pack. This is the single source of truth for battery attributes across ml/, backend/, and frontend/ - none of these layers may hardcode a fixed list of supported pack sizes or chemistries. Any pack whose metadata validates against this schema is accepted; packs far outside the training distribution are still accepted but must be flagged with a low confidence score and an explicit limitations statement by the Prediction Agent, never silently treated as equivalent to in-distribution packs.",
+  "type": "object",
+  "required": ["battery_id", "nominal_capacity_kwh", "nominal_voltage_v", "chemistry"],
+  "additionalProperties": false,
+  "properties": {
+    "battery_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique identifier for this battery pack/dataset upload."
+    },
+    "manufacturer": {
+      "type": ["string", "null"],
+      "description": "e.g. 'Tesla', 'LG Energy Solution'. Free text - not an enum, new manufacturers must not require a schema change."
+    },
+    "model_name": {
+      "type": ["string", "null"],
+      "description": "e.g. 'Model 3 LR Pack'. Free text."
+    },
+    "nominal_capacity_kwh": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Rated pack energy capacity in kWh. Deliberately unconstrained (no min/max/enum) so any EV pack size - 24 through 100+ kWh and beyond - is representable without a schema or code change."
+    },
+    "nominal_voltage_v": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "chemistry": {
+      "type": "string",
+      "enum": ["NMC", "NCA", "LFP", "LMO", "LTO", "Other"],
+      "description": "Cell chemistry family. 'Other' is a valid, non-error value for chemistries not yet explicitly enumerated."
+    },
+    "pack_configuration": {
+      "type": ["string", "null"],
+      "description": "Series/parallel cell layout, e.g. '96s2p'."
+    },
+    "cell_count": {
+      "type": ["integer", "null"],
+      "minimum": 1
+    },
+    "form_factor": {
+      "type": ["string", "null"],
+      "enum": ["cylindrical", "pouch", "prismatic", null]
+    },
+    "manufacture_year": {
+      "type": ["integer", "null"],
+      "minimum": 1990
+    },
+    "cycle_count_at_upload": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Known charge/discharge cycle count at the time the dataset was captured, if available."
+    },
+    "operating_temperature_range_c": {
+      "type": ["object", "null"],
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" }
+      },
+      "required": ["min", "max"],
+      "additionalProperties": false
+    },
+    "notes": {
+      "type": ["string", "null"],
+      "description": "Free-text field for anything not captured structurally (e.g. known damage, non-standard usage)."
+    }
+  }
+}
